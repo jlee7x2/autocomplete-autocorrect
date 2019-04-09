@@ -1,3 +1,8 @@
+def load_words():
+    with open('words_alpha.txt') as word_file:
+        valid_words = set(word_file.read().split())
+    return valid_words
+
 class TrieNode:
     def __init__(self):
         self.end = False
@@ -32,6 +37,7 @@ class Trie:
                 return False
             curr = node
         return curr.end
+
     def all_words_beginning_with_prefix(self, prefix):
         cur = self.root
         for c in prefix:
@@ -40,6 +46,15 @@ class Trie:
                 return  # No words with given prefix
 
         yield from cur.all_words(prefix)
+
+t = Trie()
+
+words = load_words()
+
+for w in words:
+    t.insert(w)
+
+print(list(t.all_words_beginning_with_prefix('abal')))
 
 trie = Trie()
 trie.insert('shoe')
