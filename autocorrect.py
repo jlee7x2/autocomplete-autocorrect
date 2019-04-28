@@ -45,7 +45,7 @@ def isBetter(candidate, current):
             return True
     return False
 
-
+## if no words beginning prefix; use closest word
 def complete(w):
     if len(w) == 0:
         return ""

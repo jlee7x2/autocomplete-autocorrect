@@ -4,6 +4,9 @@ from pynput.keyboard import Key, Listener
 from autocorrect import get_closest_k_words, complete
 import os
 
+def cls():
+    os.system('cls' if os.name=='nt' else 'clear')
+
 currentWord = ""
 words = []
 
@@ -11,7 +14,8 @@ def on_press(key):
     n = 3
     global currentWord
     global words
-    os.system('clear')
+    # os.system('clear')
+    cls()
     try:
         k = key.char
         if k.isdigit() and int(k) <= n:
@@ -50,7 +54,8 @@ def on_release(key):
         return False
 
 # Collect events until released
-os.system('clear')
+# os.system('clear')
+cls()
 with Listener(
         on_press=on_press,
         on_release=on_release) as listener:
