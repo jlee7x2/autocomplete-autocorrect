@@ -1,7 +1,7 @@
-def load_words():
-    with open('words_alpha.txt') as word_file:
-        valid_words = set(word_file.read().split())
-    return valid_words
+# def load_words():
+#     with open('words_alpha.txt') as word_file:
+#         valid_words = set(word_file.read().split())
+#     return valid_words
 
 class TrieNode:
     def __init__(self):
@@ -47,26 +47,26 @@ class Trie:
 
         yield from cur.all_words(prefix)
 
-t = Trie()
+# t = Trie()
+#
+# words = load_words()
+#
+# for w in words:
+#     t.insert(w)
 
-words = load_words()
-
-for w in words:
-    t.insert(w)
-
-print(list(t.all_words_beginning_with_prefix('abal')))
-
-trie = Trie()
-trie.insert('shoe')
-trie.insert('show')
-trie.insert('shower')
-trie.insert('short')
-trie.insert('shoulder')
-trie.insert('should')
-trie.insert('so')
-trie.insert('soon')
-trie.insert('son')
-trie.insert('soap')
-
-print(list(trie.all_words_beginning_with_prefix('so')))
-print(list(trie.all_words_beginning_with_prefix('sh')))
+# print(list(t.all_words_beginning_with_prefix('abal')))
+#
+# trie = Trie()
+# trie.insert('shoe')
+# trie.insert('show')
+# trie.insert('shower')
+# trie.insert('short')
+# trie.insert('shoulder')
+# trie.insert('should')
+# trie.insert('so')
+# trie.insert('soon')
+# trie.insert('son')
+# trie.insert('soap')
+#
+# print(list(trie.all_words_beginning_with_prefix('so')))
+# print(list(trie.all_words_beginning_with_prefix('sh')))

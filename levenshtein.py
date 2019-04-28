@@ -29,3 +29,6 @@ def levenshtein(seq1, seq2):
                 )
     # print (matrix)
     return (matrix[size_x - 1, size_y - 1])
+
+
+## ADD DAMARAU
