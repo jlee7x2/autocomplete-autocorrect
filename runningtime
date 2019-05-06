@@ -1,0 +1,36 @@
+import random
+import autocorrect
+import time
+import string
+
+string.ascii_letters
+'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+
+#simple
+start=time.time()
+print(autocorrect.complete('a'))
+end=time.time()
+print(end-start)
+
+sum=0.0000
+#random sample
+
+for i in range(100):
+    ww=random.choice(string.ascii_letters)
+    for j in range(2):
+         ww=""
+         cur = random.choice(string.ascii_letters)
+         start2=time.time()
+         autocorrect.complete(cur+ww)
+         ww = ww+cur
+         end2=time.time()
+         print(end2-start2)
+         sum+=end2-start2
+avg=sum/200
+
+#maybe a graph?
+print("average running time is")
+print(avg)
+
+#autocorrect
+
