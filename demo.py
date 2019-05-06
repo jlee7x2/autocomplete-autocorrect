@@ -9,13 +9,23 @@ def cls():
 
 currentWord = ""
 words = []
+sentences = []
+
+def load_words():
+    with open('words_alpha.txt') as word_file:
+        valid_words = set(word_file.read().split())
+    return valid_words
+
+dictionary = load_words()
 
 def on_press(key):
     n = 3
     global currentWord
     global words
+    global sentences
     # os.system('clear')
     cls()
+    # keyboard = Controller()
     try:
         k = key.char
         if k.isdigit() and int(k) <= n:
@@ -26,23 +36,40 @@ def on_press(key):
                 closest_words = get_closest_k_words(currentWord, n)
                 words.append(closest_words[d-1][0])
             currentWord = ""
-            display(currentWord, words)
+        elif k == ".":
+            if currentWord not in dictionary:
+                closest_words = get_closest_k_words(currentWord, n)
+                words.append(closest_words[-1][0] + ".")
+            else:
+                words.append(currentWord + ".")
+            currentWord = ""
         else:
             currentWord += key.char
-            display(currentWord, words)
+        display(currentWord, words)
     except AttributeError:
         if key == Key.enter:
+            sentences.append(words.copy())
             words = []
             currentWord = ""
         if key == Key.backspace:
-            currentWord = currentWord[:-1]
+            if len(currentWord) == 0:
+                if len(words) > 0:
+                    currentWord = words[-1]
+                    del words[-1]
+            else:
+                currentWord = currentWord[:-1]
         if key == Key.space:
-            closest_words = get_closest_k_words(currentWord, n)
-            words.append(closest_words[-1][0])
+            if currentWord not in dictionary:
+                closest_words = get_closest_k_words(currentWord, n)
+                words.append(closest_words[-1][0])
+            else:
+                words.append(currentWord)
             currentWord = ""
         display(currentWord, words)
 
 def display(currentWord, words, n = 3):
+    for s in sentences:
+        print(" ".join(s))
     print(" ".join(words) + " "*(len(words)!=0) + currentWord)
     closest_words = get_closest_k_words(currentWord, n)
     for i in range(len(closest_words)-1, -1, -1):
