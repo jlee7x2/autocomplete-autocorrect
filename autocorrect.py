@@ -8,6 +8,14 @@ freq = dict()
 with open('freq10.json', 'r') as fp:
     freq = json.load(fp)
 
+# print(len(freq))
+#
+# for w in d:
+#     if w not in freq:
+#         freq[w] = 1
+#
+# print(len(freq))
+
 t = autocomplete.Trie()
 
 for w in freq:
